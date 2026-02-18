@@ -70,34 +70,22 @@ export default function AdminPanel() {
                 <div className="overflow-x-auto border border-gray-200">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-black text-white uppercase text-[10px] tracking-widest">
-                                <th className="p-3">Time</th>
-                                <th className="p-3">Device & Browser</th>
-                                <th className="p-3">Location (City/Country)</th>
-                                <th className="p-3">Page Visited</th>
-                                <th className="p-3">Source (Referrer)</th>
+                            <tr className="bg-black text-white">
+                                <th className="p-2">DATE</th>
+                                <th className="p-2">IP_HASH</th>
+                                <th className="p-2">CITY</th>
+                                <th className="p-2">COUNTRY</th>
+                                <th className="p-2">PATH</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data.visits.map((v) => (
-                                <tr key={v.id} className="border-b border-gray-100 hover:bg-gray-50 transition-colors">
-                                    <td className="p-3 whitespace-nowrap text-gray-500">
-                                        {new Date(v.created_at).toLocaleTimeString()}
-                                    </td>
-                                    <td className="p-3 font-bold text-black">
-                                        {v.user_agent || "Unknown"}
-                                    </td>
-                                    <td className="p-3">
-                                        <span className="bg-gray-100 px-2 py-1 rounded text-gray-700">
-                                            📍 {v.city || 'Unknown'}, {v.country || '??'}
-                                        </span>
-                                    </td>
-                                    <td className="p-3 text-blue-600 font-mono">
-                                        {v.path}
-                                    </td>
-                                    <td className="p-3 text-gray-400 truncate max-w-[150px]">
-                                        {v.referrer || 'Direct'}
-                                    </td>
+                                <tr key={v.id} className="border-b border-gray-200">
+                                    <td className="p-2 whitespace-nowrap">{new Date(v.created_at).toLocaleString()}</td>
+                                    <td className="p-2">{v.ip_hash?.slice(0, 10)}…</td>
+                                    <td className="p-2">{v.city ?? '-'}</td>
+                                    <td className="p-2">{v.country ?? '-'}</td>
+                                    <td className="p-2">{v.path ?? '-'}</td>
                                 </tr>
                             ))}
                         </tbody>

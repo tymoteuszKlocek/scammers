@@ -9,7 +9,7 @@ export function VisitBeacon() {
       referrer: document.referrer || null,
     }
 
-    fetch('/api/visit', {
+    fetch('/api/visits', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(payload),
