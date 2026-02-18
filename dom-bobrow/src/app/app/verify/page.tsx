@@ -56,14 +56,16 @@ export default function VerifyPage() {
       const fileName = `${user.id}/${Date.now()}.jpg`
       
       // 3. Upload do Supabase Storage
-      const { error: uploadError } = await supabase.storage
+     console.log("Attempting upload to storage:", fileName);
+      const { data: uploadData, error: uploadError } = await supabase.storage
         .from('photos')
-        .upload(fileName, blob)
+        .upload(fileName, blob);
 
       if (uploadError) {
-        console.error(uploadError)
-        setStatus('error')
-        return
+        console.error("STORAGE ERROR:", uploadError); // <--- TO NAM POWIE WSZYSTKO
+        setMsg(`Storage Error: ${uploadError.message}`);
+        setStatus('error');
+        return;
       }
 
       // 4. Zapis metadanych w DB

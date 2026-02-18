@@ -1,4 +1,4 @@
-
+import './globals.css'
 import { VisitBeacon } from "./components/VisitBeacon";
 
 
